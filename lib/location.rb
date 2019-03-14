@@ -3,9 +3,9 @@ module KittenRescue
   class Location
     attr_accessor :bearing, :coordinates
 
-    def initialize
+    def initialize(x: 0, y: 0)
        @bearing = 0
-       @coordinates = {x: 0, y: 0}
+       @coordinates = {x: x, y: y}
     end
 
     def coordinates=(x: , y:)

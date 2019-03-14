@@ -14,4 +14,22 @@ RSpec.describe KittenRescue::Location do
       expect(subject.bearing).to eq 0
     end
   end
+
+  describe "can receive coordinates" do
+    it "has coordinates of '{x: 5, y: 0}'" do
+      expect(described_class.new(x: 5).coordinates).to include ({x: 5, y: 0})
+    end
+
+    it "has coordinates of '{x: 0, y: 4}'" do
+      expect(described_class.new(y: 4).coordinates).to include ({x: 0, y: 4})
+    end
+
+    it "has coordinates of '{x: 2, y: 3}'" do
+      expect(described_class.new(x: 2, y: 3).coordinates).to include ({x: 2, y: 3})
+    end
+
+    it "has coordinates of '{x: -1, y: -3}'" do
+      expect(described_class.new(x: -1, y: -3).coordinates).to include ({x: -1, y: -3})
+    end
+  end
 end
