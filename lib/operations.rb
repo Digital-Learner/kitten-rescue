@@ -7,7 +7,6 @@ module KittenRescue
     VALID_DIRECTIONS = %w(forward left right)
 
     attr_reader :directions, :locations
-    # attr_writer :directions
 
     def initialize
       @directions = []
@@ -26,6 +25,11 @@ module KittenRescue
       return @locations
     end
 
+    def validate_location
+      coordinates = calculated_location.coordinates
+      api_client.get_location(x: coordinates[:x], y: coordinates[:y])
+    end
+
     private
 
     def api_client
@@ -42,7 +46,7 @@ module KittenRescue
         new_position = create_and_update_position(last_position: locations.last)
         new_position.bearing -= 90 if direction == "left"
         new_position.bearing += 90 if direction == "right"
-        move(new_position)
+        move(new_position) unless direction == "right" || direction == "left"
         @locations << new_position
       end
     end
@@ -63,6 +67,10 @@ module KittenRescue
       when 270
         position.coordinates[:x] -= 1
       end
+    end
+
+    def calculated_location
+      @locations.last
     end
   end
 end
