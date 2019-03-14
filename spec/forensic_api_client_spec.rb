@@ -13,4 +13,15 @@ RSpec.describe KittenRescue::ForensicApiClient do
       expect(KittenRescue::ForensicApiClient::HOST).not_to eq("incorrect_constant_value")
     end
   end
+
+  describe "api calls" do
+    let(:email) {'example@example.com'}
+
+    context "#get_directions" do
+      it "returns the forensics evidence gathered" do
+        forensic_api = described_class.new(email: email)
+        expect(forensic_api.get_directions).not_to be_empty
+      end
+    end
+  end
 end
