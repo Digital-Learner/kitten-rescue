@@ -32,4 +32,10 @@ RSpec.describe KittenRescue::Location do
       expect(described_class.new(x: -1, y: -3).coordinates).to include ({x: -1, y: -3})
     end
   end
+
+  describe "can receive a bearing" do
+    it "has a bearing of 270" do
+      expect(described_class.new(bearing: 270).bearing).to eq 270
+    end
+  end
 end
