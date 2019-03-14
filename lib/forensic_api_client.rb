@@ -23,6 +23,7 @@ module KittenRescue
     end
 
     def parse_response(response)
+      return {} if response.status != 200
       JSON.parse(response.body)
     end
   end

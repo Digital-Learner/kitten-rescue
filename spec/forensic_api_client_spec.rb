@@ -26,6 +26,10 @@ RSpec.describe KittenRescue::ForensicApiClient do
         expect(subject.keys).to include("directions")
         expect(subject.values).not_to be_empty
       end
+
+      it "returns empty hash when response status is not 200" do
+        expect(described_class.new(email: '').get_directions).to be_empty
+      end
     end
   end
 end
