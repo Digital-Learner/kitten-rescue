@@ -31,5 +31,16 @@ RSpec.describe KittenRescue::ForensicApiClient do
         expect(described_class.new(email: '').get_directions).to be_empty
       end
     end
+
+    context "#get_location" do
+      let(:subject) { forensics_api.get_location }
+
+      it "returns the result of sending the calculated location" do
+        expect(subject).not_to be_empty
+        expect(subject.keys).to include("location")
+        expect(subject.values).not_to be_empty
+      end
+    end
+
   end
 end

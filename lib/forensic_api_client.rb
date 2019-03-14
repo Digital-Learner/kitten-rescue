@@ -16,6 +16,11 @@ module KittenRescue
       parse_response(response)
     end
 
+    def get_location(x: 0, y: 0)
+      response = HTTP.get(forensics_uri("location/#{:x}/#{:y}"))
+      parse_response(response)["message"]
+    end
+
     private
 
     def forensics_uri(action)
